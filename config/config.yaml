@@ -1,0 +1,240 @@
+# ═══════════════════════════════════════════════════════════════
+#                    TrendRadar 配置文件
+# ═══════════════════════════════════════════════════════════════
+
+
+# ===============================================================
+# 1. 基础设置
+# ===============================================================
+app:
+  # 时区配置（影响所有时间显示、推送窗口判断、数据存储）
+  # 常用时区：
+  #    - Asia/Shanghai (北京时间 UTC+8)
+  #    - America/New_York (美东时间 UTC-5/-4)
+  #    - Europe/London (伦敦时间 UTC+0/+1)
+  # 完整时区列表: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  timezone: "Asia/Shanghai"
+  show_version_update: true           # 显示版本更新提示
+
+
+# ===============================================================
+# 1.5 筛选知识 - 关键词矩阵 (新增)
+# ===============================================================
+keyword_filters:
+  - name: "🤖 全球AI大模型"
+    keywords: ["AI", "人工智能", "大模型", "GPT", "OpenAI", "DeepSeek", "Claude", "LLM", "Sora", "Gemini", "AIGC", "神经网络", "机器学习", "算力", "NVIDIA", "英伟达"]
+  
+  - name: "💻 编程与开源开发"
+    keywords: ["编程", "程序员", "GitHub", "开源", "代码", "Java", "Python", "Rust", "Go语言", "C++", "算法", "架构", "Linux", "Docker", "Kubernetes", "TypeScript"]
+  
+  - name: "💰 搞钱/创业/变现"
+    keywords: ["赚钱", "创业", "副业", "搞钱", "出海", "投资", "理财", "股票", "基金", "商业模式", "变现", "IPO", "融资", "风投", "美股", "A股"]
+  
+  - name: "📱 机圈/数码/芯片"
+    keywords: ["手机", "芯片", "华为", "小米", "苹果", "iPhone", "数码", "硬件", "处理器", "显卡", "Intel", "AMD", "台积电", "半导体", "测评", "性能"]
+  
+  - name: "🇨🇳 国家宏观/要闻"
+    keywords: ["国家", "中国", "政策", "经济", "发展", "发布会", "中央", "国务院", "外交部", "民生", "重磅", "权威", "新华社", "央视", "会议"]
+
+
+# ===============================================================
+# 2. 数据源 - 热榜平台 (全量开启)
+#
+# id: 平台唯一标识（勿修改）
+# name: 显示名称（可自定义，修改后不影响运行）
+# ===============================================================
+platforms:
+  - id: "toutiao"
+    name: "今日头条"
+  - id: "baidu"
+    name: "百度热搜"
+  - id: "weibo"
+    name: "微博"
+  - id: "zhihu"
+    name: "知乎"
+  - id: "douyin"
+    name: "抖音"
+  - id: "bilibili-hot-search"
+    name: "B站热搜"
+  - id: "wallstreetcn-hot"
+    name: "华尔街见闻"
+  - id: "thepaper"
+    name: "澎湃新闻"
+  - id: "cls-hot"
+    name: "财联社"
+  - id: "ifeng"
+    name: "凤凰网"
+  - id: "tieba"
+    name: "贴吧"
+  - id: "36kr"
+    name: "36氪"
+  - id: "it-home"
+    name: "IT之家"
+  - id: "juejin"
+    name: "稀土掘金"
+  - id: "sspai"
+    name: "少数派"
+  - id: "v2ex"
+    name: "V2EX"
+  - id: "github-trending"
+    name: "GitHub Trending"
+
+
+# ===============================================================
+# 3. 数据源 - RSS 订阅 (扩充国内外源)
+# ===============================================================
+rss:
+  enabled: true                       # 是否启用 RSS 抓取
+
+  freshness_filter:
+    enabled: true                     # 是否启用新鲜度过滤
+    max_age_days: 1                   # 只推送24小时内最新信息
+
+  feeds:
+    - id: "hacker-news"
+      name: "Hacker News"
+      url: "https://hnrss.org/frontpage"
+
+    - id: "product-hunt"
+      name: "Product Hunt"
+      url: "https://www.producthunt.com/feed"
+
+    - id: "techcrunch"
+      name: "TechCrunch"
+      url: "https://techcrunch.com/feed"
+
+    - id: "openai-blog"
+      name: "OpenAI 官方博客"
+      url: "https://openai.com/news/rss.xml"
+
+    - id: "ruanyifeng"
+      name: "阮一峰的网络日志"
+      url: "http://www.ruanyifeng.com/blog/atom.xml"
+    
+    - id: "yahoo-finance"
+      name: "雅虎财经 (全球)"
+      url: "https://finance.yahoo.com/news/rssindex"
+      enabled: true
+
+
+# ===============================================================
+# 4. 报告模式
+# ===============================================================
+report:
+  mode: "daily"                       # 设为汇总模式，更适合阅读
+  display_mode: "keyword"             # 按关键词分组显示
+  rank_threshold: 5                   # 排名高亮阈值
+  sort_by_position_first: false       # 按热点条数排序
+  max_news_per_keyword: 10            # 每个关键词显示10条，确保信息完整
+  reverse_content_order: false        
+
+
+# ===============================================================
+# 5. 推送通知
+# ===============================================================
+notification:
+  enabled: true                       # 是否启用通知功能
+
+  push_window:
+    enabled: false                    # 保持原样
+    start: "20:00"
+    end: "22:00"
+    once_per_day: true
+
+  channels:
+    feishu:
+      webhook_url: ""
+
+    dingtalk:
+      webhook_url: ""
+
+    wework:
+      webhook_url: ""
+      msg_type: "markdown"
+
+    telegram:
+      bot_token: ""
+      chat_id: ""
+
+    email:
+      enabled: true                  # 必须是 true
+      from: ""
+      password: ""
+      to: ""
+      smtp_server: "smtp.gmail.com"
+      smtp_port: "465"
+
+    ntfy:
+      server_url: "https://ntfy.sh"
+      topic: ""
+      token: ""
+
+    bark:
+      url: ""
+
+    slack:
+      webhook_url: ""
+
+
+# ===============================================================
+# 6. 存储配置
+# ===============================================================
+storage:
+  backend: "auto"
+
+  formats:
+    sqlite: true                      # 主存储
+    txt: false                        
+    html: true                        # 邮件推送必须设为 true
+
+  local:
+    data_dir: "output"
+    retention_days: 0
+
+  remote:
+    retention_days: 0
+    endpoint_url: ""
+    bucket_name: ""
+    access_key_id: ""
+    secret_access_key: ""
+    region: ""
+
+  pull:
+    enabled: false
+    days: 7
+
+
+# ===============================================================
+# 7. 高级设置（一般无需修改）
+# ===============================================================
+advanced:
+  version_check_url: "https://raw.githubusercontent.com/sansan0/TrendRadar/refs/heads/master/version"
+
+  crawler:
+    enabled: true
+    request_interval: 1000
+    use_proxy: false
+    default_proxy: "http://127.0.0.1:10801"
+
+  rss:
+    request_interval: 2000
+    timeout: 15
+    use_proxy: false
+    proxy_url: ""
+    notification_enabled: true
+
+  weight:
+    rank: 0.6
+    frequency: 0.3
+    hotness: 0.1
+
+  max_accounts_per_channel: 3
+
+  batch_size:
+    default: 4000
+    dingtalk: 20000
+    feishu: 30000
+    bark: 4000
+    slack: 4000
+  batch_send_interval: 3
+  feishu_message_separator: "━━━━━━━━━━━━━━━━━━━"
