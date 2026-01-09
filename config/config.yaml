@@ -110,11 +110,37 @@ rss:
     - id: "ruanyifeng"
       name: "阮一峰的网络日志"
       url: "http://www.ruanyifeng.com/blog/atom.xml"
-    
+
     - id: "yahoo-finance"
       name: "雅虎财经 (全球)"
       url: "https://finance.yahoo.com/news/rssindex"
-      enabled: true
+
+    # ====== 我给你推荐新增的高质量源 ======
+
+    - id: "mit-tech-review"
+      name: "MIT Technology Review"
+      url: "https://www.technologyreview.com/feed/"
+
+    - id: "the-decoder"
+      name: "The Decoder（AI 专注）"
+      url: "https://the-decoder.com/feed/"
+
+    - id: "a16z"
+      name: "a16z Blog"
+      url: "https://a16z.com/feed/"
+
+    - id: "ycombinator"
+      name: "Y Combinator Blog"
+      url: "https://www.ycombinator.com/blog/rss"
+
+    - id: "sspai-rss"
+      name: "少数派精选"
+      url: "https://sspai.com/feed"
+
+    - id: "ifanr"
+      name: "爱范儿"
+      url: "https://www.ifanr.com/feed"
+
 
 
 # ===============================================================
@@ -161,8 +187,8 @@ notification:
       from: ""
       password: ""
       to: ""
-      smtp_server: "smtp.gmail.com"
-      smtp_port: "465"
+      smtp_server: ""
+      smtp_port: ""
 
     ntfy:
       server_url: "https://ntfy.sh"
